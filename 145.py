@@ -23,7 +23,7 @@ for x in range(10, max + 1):
 
 print(n)
 
-# Only need to check up to 10^8 as there are no 7 + reverse(7) digit numbers
+# Only need to check up to 10^8 as there are no 9 + reverse(9) digit numbers
 # that have no even numbers in them. (Nor are there 5 + reverse(5).)
 # Too slow! 3m14s. Pure brute force.
 # Not exactly sure what the relation between orders of magnitude is but I'm
