@@ -21,10 +21,18 @@ for i in range(size ** 2):
             adj_matrix[i][i+size] = \
             int(adj_values[i//size%size+1][i%size])
 
+for i in range(size ** 2):
+    if i + size < size ** 2 - 1:
+        assert adj_matrix[i][i+size] < inf, "%d, %d" % (i, i+size)
+    if not (i + 1) % size == 0:
+        assert adj_matrix[i][i+1] < inf, "%d, %d" % (i, i+1)
+
 assert adj_matrix[0][1] == int(adj_values[0][1])
 assert adj_matrix[0][size] == int(adj_values[1][0])
 s = set(adj_matrix[0]); s -= {adj_values[0][1]}; s -= {adj_values[1][0]}
 assert s == {inf}
+
+assert set(adj_matrix[size**2-1]) == {inf}
 
 shortest = [inf for _ in range(size**2)]  # Shortest path v0 -> vN
 shortest[0] = int(adj_values[0][0])
@@ -36,6 +44,8 @@ for v in range(len(adj_matrix)):
         if shortest[i] > c + shortest[v]:
             shortest[i] = c + shortest[v]
         i += 1
+
+print(shortest[-1])
 
 #for i in range(size):
 #    print(shortest[i*size:(i+1)*size])
