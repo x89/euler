@@ -9,7 +9,7 @@ adj_values = []
 for line in lines:
     line = line.split('\n')[0]
     adj_values.append([int(_) for _ in line.split(',')])
-inf = 10000  # Set to higher than anything in our matrix
+inf = 100000000  # Set to higher than anything in our matrix
 adj_matrix = [[inf for _ in range(size**2)] for _ in range(size**2)]
 
 for i in range(size ** 2):
@@ -41,15 +41,9 @@ for v in range(len(adj_matrix)):
     row = adj_matrix[v]
     i = 0
     for c in row:
-        if shortest[i] > c + shortest[v]:
-            shortest[i] = c + shortest[v]
+        if c < inf:
+            if c + shortest[v] < shortest[i]:
+                shortest[i] = c + shortest[v]
         i += 1
 
 print(shortest[-1])
-
-#for i in range(size):
-#    print(shortest[i*size:(i+1)*size])
-
-#print(adj_values, shortest)
-
-#print([{str(_): shortest[_]} for _ in range(len(shortest))])
